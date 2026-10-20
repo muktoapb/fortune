@@ -128,8 +128,8 @@ const en = {
     steps: [
       { t: "Land secured", s: "done", d: "The 12.06-decimal corner plot is secured for the project." },
       { t: "Soil test", s: "done", d: "Soil test complete; the structure is designed to suit the ground." },
+      { t: "Land registration", s: "done", d: "Registration is complete for all 30 sold shares. The remaining 6 will be registered soon." },
       { t: "Plan approval", s: "now", d: "Architectural drawings and plan submitted and going through approval." },
-      { t: "Land registration", s: "next", d: "Each land share registered in the shareholder's name." },
       { t: "Piling & structure", s: "next", d: "Foundation piling, then nine floors of structure rise." },
       { t: "Handover 2030", s: "next", d: "Flats finished and handed over, Insha'Allah." },
     ],
@@ -338,8 +338,8 @@ const bn: Dict = {
     steps: [
       { t: "জমি নিশ্চিত", s: "done", d: "প্রজেক্টের জন্য ১২.০৬ শতাংশের কর্নার প্লট নিশ্চিত করা হয়েছে।" },
       { t: "সয়েল টেস্ট", s: "done", d: "সয়েল টেস্ট সম্পন্ন; মাটি অনুযায়ী কাঠামো ডিজাইন করা হয়েছে।" },
+      { t: "জমি রেজিস্ট্রেশন", s: "done", d: "বিক্রিত ৩০টি শেয়ারের রেজিস্ট্রেশন সম্পন্ন। বাকি ৬টি শীঘ্রই রেজিস্ট্রি হবে।" },
       { t: "প্ল্যান অনুমোদন", s: "now", d: "স্থাপত্য নকশা ও প্ল্যান জমা দেওয়া হয়েছে, অনুমোদনের প্রক্রিয়া চলছে।" },
-      { t: "জমি রেজিস্ট্রেশন", s: "next", d: "প্রতিটি জমির শেয়ার শেয়ারহোল্ডারের নামে রেজিস্ট্রি হবে।" },
       { t: "পাইলিং ও কাঠামো", s: "next", d: "ফাউন্ডেশন পাইলিং, তারপর নয় তলার কাঠামো নির্মাণ।" },
       { t: "হস্তান্তর ২০৩০", s: "next", d: "ইনশাআল্লাহ ফ্ল্যাট সম্পূর্ণ করে হস্তান্তর।" },
     ],

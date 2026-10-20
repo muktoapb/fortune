@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 import { useLang } from "./LangProvider";
@@ -34,21 +33,8 @@ export function LangToggle() {
 
 export default function Nav() {
   const { t } = useLang();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 40);
-    on();
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-  }, []);
-
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "border-b border-line bg-paper/70 backdrop-blur-xl" : "bg-transparent"
-      }`}
-    >
+    <header className="absolute inset-x-0 top-0 z-50">
       <nav className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-8" aria-label="Main">
         <a href="#top" aria-label="Fortune Tower — home">
           <Logo />
@@ -59,9 +45,6 @@ export default function Nav() {
             <UserIcon />
             <span className="hidden sm:inline">{t.nav.login}</span>
           </Link>
-          <a href="#contact" className="btn-primary hidden !py-2.5 !text-sm md:inline-flex">
-            {t.nav.book}
-          </a>
         </div>
       </nav>
     </header>
