@@ -1,0 +1,6 @@
+node_modules
+.next
+.git
+*.md
+*.jpeg
+idea-website.jpg

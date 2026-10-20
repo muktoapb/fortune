@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #0a0f1a;
+  --color-cream: #121a2a;
+  --color-sand: #19233a;
+  --color-ink: #eef1f6;
+  --color-navy: #1d3a66;
+  --color-mist: #93a0b4;
+  --color-brass: #d4b27a;
+  --color-brass-bright: #c9a35c;
+  --color-brass-soft: #e8d3a6;
+  --color-ember: #ec6a43;
+  --color-available: #34d399;
+  --color-sold: #4b5a73;
+  --color-line: rgb(238 241 246 / 0.1);
+
+  --font-display: var(--font-sora), system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+
+  --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Bangla: swap to fonts that render Bengali script properly. */
+html:lang(bn) {
+  --font-display: var(--font-anek), var(--font-sora), sans-serif;
+  --font-sans: var(--font-hind), var(--font-jakarta), sans-serif;
+}
+
+/* Bengali glyphs need taller lines than the Latin display face. */
+html:lang(bn) :is(h1, h2, h3, summary) {
+  line-height: 1.25 !important;
+  letter-spacing: 0 !important;
+}
+
+html {
+  background: var(--color-paper);
+  color-scheme: dark;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: lining-nums;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Film grain over everything. */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Display face: tight, architectural. In the base layer so utilities still override it. */
+@layer base {
+  .font-display {
+    letter-spacing: -0.035em;
+    font-weight: 500;
+  }
+  html:lang(bn) .font-display {
+    letter-spacing: 0;
+  }
+}
+
+@layer components {
+/* Brass light used as text. */
+.text-brass-grad {
+  background: linear-gradient(180deg, #f3dfb0 0%, #d4b27a 55%, #9c7a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-brass);
+}
+html:lang(bn) .eyebrow {
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+}
+
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.95rem 1.6rem;
+  font-weight: 600;
+  color: var(--color-paper);
+  background: linear-gradient(180deg, #f0dcab, var(--color-brass-bright));
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.35) inset, 0 12px 36px -12px rgb(212 178 122 / 0.6);
+  transition: transform 0.4s var(--ease-cine), box-shadow 0.4s var(--ease-cine);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.5) inset, 0 18px 46px -10px rgb(212 178 122 / 0.8);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.95rem 1.6rem;
+  font-weight: 500;
+  border: 1px solid rgb(238 241 246 / 0.18);
+  background: rgb(255 255 255 / 0.03);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s, background 0.3s;
+}
+.btn-ghost:hover {
+  border-color: var(--color-brass);
+  background: rgb(212 178 122 / 0.08);
+}
+
+.glass {
+  background: linear-gradient(180deg, rgb(18 26 42 / 0.8), rgb(10 15 26 / 0.6));
+  box-shadow: 0 24px 60px -32px rgb(0 0 0 / 0.6);
+  border: 1px solid var(--color-line);
+  backdrop-filter: blur(14px);
+}
+
+}
+
+/* Scroll reveal (see components/Reveal.tsx). */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 1.1s var(--ease-cine), transform 1.1s var(--ease-cine);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.pulse-ember {
+  animation: pulse-ember 2s ease-in-out infinite;
+}
+@keyframes pulse-ember {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(236 106 67 / 0.55); }
+  50% { box-shadow: 0 0 0 8px rgb(236 106 67 / 0); }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .grain { animation: none; }
+}
