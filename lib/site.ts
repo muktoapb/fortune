@@ -4,10 +4,7 @@ export const site = {
   name: "Fortune Tower",
   domain: "fortunetower.info",
   url: "https://fortunetower.info",
-  phone: "01722-395490",
-  phoneIntl: "+8801722395490",
-  whatsapp: "8801722395490", // same number as phone
-  whatsappDisplay: "+880 1722-395490",
+  whatsapp: "8801776677727",
   email: "contact@fortunetower.info",
   facebook: "https://www.facebook.com/fortunetowerbd",
   mapsUrl: "https://maps.app.goo.gl/soU6nXJkmAA8v6cg6",

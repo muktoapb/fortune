@@ -5,3 +5,8 @@ next-env.d.ts
 *.tsbuildinfo
 .DS_Store
 .env*
+
+# media / reel renders
+*.mp4
+*.mp3
+reel_work/

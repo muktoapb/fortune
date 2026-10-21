@@ -175,7 +175,6 @@ const en = {
     title1: "Only",
     title2: "shares left in Fortune Tower.",
     body: "Talk to us today. We'll answer every question and show you the land.",
-    call: "Call",
     whatsapp: "WhatsApp",
     email: "Email",
     form: {
@@ -385,7 +384,6 @@ const bn: Dict = {
     title1: "ফরচুন টাওয়ারে মাত্র",
     title2: "টি শেয়ার বাকি।",
     body: "আজই কথা বলুন। আপনার সব প্রশ্নের উত্তর দেব এবং জমি দেখাব।",
-    call: "কল",
     whatsapp: "হোয়াটসঅ্যাপ",
     email: "ইমেইল",
     form: {

@@ -3,15 +3,8 @@
 import Logo from "./Logo";
 import { useLang } from "./LangProvider";
 import { WhatsAppIcon } from "./WhatsAppFab";
-import { sharesLeft, site, whatsappLink } from "@/lib/site";
+import { site, whatsappLink } from "@/lib/site";
 
-function PhoneIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z" />
-    </svg>
-  );
-}
 function MailIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -77,26 +70,12 @@ export default function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-mist">{t.footer.tag}</p>
-            <a href="#contact" className="mt-6 inline-flex items-center gap-3 rounded-full border border-line py-1.5 pr-4 pl-1.5 text-sm transition-colors hover:border-brass/50">
-              <span className="pulse-ember rounded-full bg-ember px-2.5 py-0.5 text-xs font-semibold text-white">
-                {num(sharesLeft)} {t.hero.left}
-              </span>
-              {t.nav.book} →
-            </a>
           </div>
 
           {/* contact */}
           <div>
             <p className={heading}>{t.footer.contact}</p>
             <ul className="space-y-3 text-sm">
-              <li>
-                <a href={`tel:${site.phoneIntl}`} className={row}>
-                  <span className={chip}>
-                    <PhoneIcon />
-                  </span>
-                  {num(site.phone)}
-                </a>
-              </li>
               <li>
                 <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer" className={row}>
                   <span className={chip}>

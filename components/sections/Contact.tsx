@@ -43,11 +43,8 @@ export default function Contact() {
           </h2>
           <p className="mt-6 max-w-md text-ink/75 md:text-lg">{t.cta.body}</p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href={`tel:${site.phoneIntl}`} className="btn-primary">
-              {t.cta.call} {num(site.phone)}
-            </a>
-            <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer" className="btn-ghost">
-              <WhatsAppIcon className="h-5 w-5 text-[#25d366]" /> {t.cta.whatsapp}
+            <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <WhatsAppIcon className="h-5 w-5" /> {t.cta.whatsapp}
             </a>
             <a href={`mailto:${site.email}`} className="btn-ghost">
               {site.email}

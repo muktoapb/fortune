@@ -39,7 +39,6 @@ const jsonLd = {
   url: site.url,
   description,
   image: `${site.url}/assets/images/tower-sunset.jpg`,
-  telephone: site.phoneIntl,
   email: site.email,
   numberOfAccommodationUnits: site.totalShares,
   address: {

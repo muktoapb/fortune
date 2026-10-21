@@ -5,11 +5,11 @@ import Logo from "@/components/Logo";
 import { LangProvider, useLang } from "@/components/LangProvider";
 import { LangToggle } from "@/components/Nav";
 import { WhatsAppIcon } from "@/components/WhatsAppFab";
-import { site, whatsappLink } from "@/lib/site";
+import { whatsappLink } from "@/lib/site";
 
 /** Placeholder until the customer / partner portal (Phase 2) exists. */
 function Card() {
-  const { t, num } = useLang();
+  const { t } = useLang();
   return (
     <main className="relative flex min-h-svh flex-col">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_30%,rgba(212,178,122,0.12),transparent_70%)]" />
@@ -34,9 +34,6 @@ function Card() {
           <div className="mt-4 flex flex-col gap-3">
             <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer" className="btn-primary justify-center">
               <WhatsAppIcon className="h-5 w-5" /> {t.cta.whatsapp}
-            </a>
-            <a href={`tel:${site.phoneIntl}`} className="btn-ghost justify-center">
-              {t.cta.call} {num(site.phone)}
             </a>
           </div>
           <Link href="/" className="mt-8 inline-block text-sm text-brass hover:underline">
