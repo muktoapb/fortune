@@ -16,9 +16,8 @@ const ROOMS: { k: RoomKey; x: number; y: number; w: number; h: number; balcony?:
   { k: "kitchen", x: 370, y: 70, w: 110, h: 150 },
   { k: "living", x: 0, y: 140, w: 160, h: 160 },
   { k: "dining", x: 160, y: 140, w: 210, h: 260 },
-  { k: "bath", x: 370, y: 220, w: 110, h: 80 },
   { k: "bed3", x: 0, y: 300, w: 160, h: 100 },
-  { k: "core", x: 370, y: 300, w: 110, h: 100 },
+  { k: "core", x: 370, y: 220, w: 110, h: 180 },
   { k: "balcony", x: 230, y: -40, w: 140, h: 40, balcony: true },
   { k: "balcony", x: -40, y: 150, w: 40, h: 140, balcony: true },
 ];

@@ -64,7 +64,7 @@ const en = {
     label: "The home",
     title: "Room for the whole family.",
     body: "Every flat is 1,313 sq ft including parking, planned around light and cross-ventilation.",
-    specs: ["3 Bedrooms", "3 Bathrooms", "3 Balconies", "Formal Living", "Drawing & Dining", "Kitchen"],
+    specs: ["3 Bedrooms", "2 Bathrooms", "2 Balconies", "Formal Living", "Drawing & Dining", "Kitchen"],
     rooms: {
       bed1: "Master Bed",
       bed2: "Bedroom",
@@ -273,7 +273,7 @@ const bn: Dict = {
     label: "ফ্ল্যাট",
     title: "পুরো পরিবারের জন্য জায়গা।",
     body: "প্রতিটি ফ্ল্যাট পার্কিংসহ ১,৩১৩ বর্গফুট, আলো-বাতাস চলাচলের কথা ভেবে পরিকল্পিত।",
-    specs: ["৩টি বেডরুম", "৩টি বাথরুম", "৩টি ব্যালকনি", "ফরমাল লিভিং", "ড্রয়িং ও ডাইনিং", "কিচেন"],
+    specs: ["৩টি বেডরুম", "২টি বাথরুম", "২টি ব্যালকনি", "ফরমাল লিভিং", "ড্রয়িং ও ডাইনিং", "কিচেন"],
     rooms: {
       bed1: "মাস্টার বেড",
       bed2: "বেডরুম",
