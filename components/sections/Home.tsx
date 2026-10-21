@@ -9,15 +9,15 @@ import { bdt, site } from "@/lib/site";
 type RoomKey = keyof Dict["home"]["rooms"];
 // Illustrative plan of one 1,313 sq ft flat (units are arbitrary SVG units).
 const ROOMS: { k: RoomKey; x: number; y: number; w: number; h: number; balcony?: boolean }[] = [
-  { k: "bed1", x: 0, y: 0, w: 160, h: 140 },
-  { k: "bath", x: 160, y: 0, w: 70, h: 80 },
+  { k: "bed1", x: 0, y: 0, w: 140, h: 140 },
+  { k: "bathAttached", x: 140, y: 0, w: 90, h: 140 },
   { k: "bed2", x: 230, y: 0, w: 140, h: 140 },
-  { k: "bath", x: 370, y: 0, w: 110, h: 70 },
-  { k: "kitchen", x: 370, y: 70, w: 110, h: 150 },
+  { k: "kitchen", x: 370, y: 0, w: 110, h: 220 },
   { k: "living", x: 0, y: 140, w: 160, h: 160 },
   { k: "dining", x: 160, y: 140, w: 210, h: 260 },
+  { k: "bathCommon", x: 370, y: 220, w: 110, h: 80 },
   { k: "bed3", x: 0, y: 300, w: 160, h: 100 },
-  { k: "core", x: 370, y: 220, w: 110, h: 180 },
+  { k: "core", x: 370, y: 300, w: 110, h: 100 },
   { k: "balcony", x: 230, y: -40, w: 140, h: 40, balcony: true },
   { k: "balcony", x: -40, y: 150, w: 40, h: 140, balcony: true },
 ];
@@ -61,7 +61,7 @@ export default function Home() {
                       y={r.y + r.h / 2}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fontSize={r.w < 80 || r.h < 50 ? 11 : 14}
+                      fontSize={r.w < 100 || r.h < 50 ? 11 : 14}
                       fill={on ? "#d4b27a" : "rgba(238,241,246,0.7)"}
                       transform={r.w < 50 ? `rotate(-90 ${r.x + r.w / 2} ${r.y + r.h / 2})` : undefined}
                       style={{ transition: "fill .3s", pointerEvents: "none" }}
