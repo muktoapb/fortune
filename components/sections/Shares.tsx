@@ -5,8 +5,9 @@ import dynamic from "next/dynamic";
 import { gsap } from "gsap";
 import { useLang } from "../LangProvider";
 import Reveal from "../Reveal";
-import { bdt, site, sharesLeft } from "@/lib/site";
+import { bdt, site, sharesLeft, whatsappLink } from "@/lib/site";
 import { hasWebGL, useReducedMotion } from "@/lib/useMotion";
+import ArrowIcon from "../ArrowIcon";
 
 const ShareScene = dynamic(() => import("../three/ShareScene"), { ssr: false });
 
@@ -63,7 +64,7 @@ export default function Shares() {
   return (
     <section ref={root} id="shares" className="relative overflow-hidden py-14 md:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_70%_50%,rgba(194,163,107,0.12),transparent_70%)]" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-8 lg:grid-cols-[1fr_1.15fr]">
+      <div className="relative mx-auto grid grid-cols-1 max-w-7xl items-center gap-12 px-4 sm:px-8 lg:grid-cols-[1fr_1.15fr]">
         <div>
           <Reveal>
             <p className="eyebrow mb-5">{t.shares.label}</p>
@@ -119,8 +120,8 @@ export default function Shares() {
           </Reveal>
 
           <Reveal delay={250} className="mt-10">
-            <a href="#contact" className="btn-primary">
-              {t.shares.cta} {num(sharesLeft)} <span aria-hidden>→</span>
+            <a href={whatsappLink(t.bookMsg)} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              {t.shares.cta} {num(sharesLeft)} <ArrowIcon />
             </a>
           </Reveal>
         </div>

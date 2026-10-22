@@ -4,6 +4,7 @@ import Logo from "./Logo";
 import { useLang } from "./LangProvider";
 import { WhatsAppIcon } from "./WhatsAppFab";
 import { site, whatsappLink } from "@/lib/site";
+import ArrowIcon from "./ArrowIcon";
 
 function MailIcon() {
   return (
@@ -65,7 +66,7 @@ export default function Footer() {
     <footer className="relative mt-10 overflow-hidden">
       <Skyline />
       <div className="bg-gradient-to-b from-cream/40 to-paper">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 pt-14 pb-12 sm:px-8 md:grid-cols-3 lg:grid-cols-[1.4fr_1.2fr_1fr]">
+        <div className="mx-auto grid grid-cols-1 max-w-7xl gap-12 px-4 pt-14 pb-12 sm:px-8 md:grid-cols-3 lg:grid-cols-[1.4fr_1.2fr_1fr]">
           {/* brand */}
           <div>
             <Logo />
@@ -112,7 +113,9 @@ export default function Footer() {
               </span>
               <span className="text-sm leading-relaxed">
                 {t.footer.address}
-                <span className="mt-1 block text-brass">{t.location.map} ↗</span>
+                <span className="mt-1 flex items-center gap-1.5 text-brass">
+                  {t.location.map} <ArrowIcon dir="up-right" className="h-3.5 w-3.5" />
+                </span>
               </span>
             </a>
           </div>
@@ -123,10 +126,10 @@ export default function Footer() {
           <p>
             © {num(new Date().getFullYear())} {site.name} · {site.domain} · {t.footer.rights}
           </p>
-          <a href="#top" className="group inline-flex items-center gap-2 transition-colors hover:text-brass">
+          <a href="#top" className="group inline-flex items-center gap-2 py-2 transition-colors hover:text-brass">
             {t.footer.top}
             <span className="flex h-7 w-7 items-center justify-center rounded-full border border-line transition-transform group-hover:-translate-y-0.5 group-hover:border-brass/60">
-              ↑
+              <ArrowIcon dir="up" className="h-3.5 w-3.5" />
             </span>
           </a>
         </div>

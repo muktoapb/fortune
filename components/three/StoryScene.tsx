@@ -19,6 +19,8 @@ const T = {
   night: [0.82, 0.97],
 } as const;
 
+const BASE_FOV = 35; // matches StoryCanvas
+
 // Camera keyframes: [t, position, target]
 const KEYS: [number, THREE.Vector3, THREE.Vector3][] = [
   [0.0, new THREE.Vector3(29, 6, 29), new THREE.Vector3(0, 6.6, 0)],
@@ -322,14 +324,25 @@ export default function StoryScene({ quality }: { quality: "high" | "low" }) {
     state.look.lerp(state.tgt, k);
     camera.lookAt(state.look);
 
-    // Shift the frame so the tower sits right of the copy on wide screens.
+    // Portrait screens see far less width at the same fov: widen it so the whole tower fits.
+    // (Widening rather than backing off keeps low shots from ending up behind the city blocks.)
     const pc = camera as THREE.PerspectiveCamera;
+    const aspect = size.width / size.height;
+    const zoom = aspect < 1 ? Math.min(2.1, 0.92 / aspect) : 1;
+    const fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(BASE_FOV / 2)) * zoom));
+    if (Math.abs(pc.fov - fov) > 0.01) {
+      pc.fov = fov;
+      pc.updateProjectionMatrix();
+    }
+
+    // Shift the frame so the tower sits right of the copy on wide screens, and above it on portrait ones.
     const shift = size.width >= 1024 ? -size.width * 0.17 : 0;
+    const lift = aspect < 1 ? Math.round(size.height * 0.14) : 0;
     const v = pc.view?.enabled ? pc.view : null;
-    if (shift === 0) {
+    if (shift === 0 && lift === 0) {
       if (v) pc.clearViewOffset();
-    } else if (!v || v.offsetX !== shift || v.fullWidth !== size.width || v.fullHeight !== size.height) {
-      pc.setViewOffset(size.width, size.height, shift, 0, size.width, size.height);
+    } else if (!v || v.offsetX !== shift || v.offsetY !== lift || v.fullWidth !== size.width || v.fullHeight !== size.height) {
+      pc.setViewOffset(size.width, size.height, shift, lift, size.width, size.height);
     }
   });
 

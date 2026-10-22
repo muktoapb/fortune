@@ -22,8 +22,8 @@ export const site = {
   registrationFee: 20000,
   bookingAmount: 100000,
   beforeRegistrationAmount: 500000,
-  constructionLakh: [23, 24],
-  totalFlatLakh: [29, 30],
+  constructionLakh: [28, 30],
+  totalFlatLakh: [34, 36], // land share total (6.2 lakh) + construction, rounded
   handoverYear: 2030,
 } as const;
 

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useLang } from "../LangProvider";
 import Reveal from "../Reveal";
 import { WhatsAppIcon } from "../WhatsAppFab";
-import { site, sharesLeft, whatsappLink } from "@/lib/site";
+import { sharesLeft, whatsappLink } from "@/lib/site";
 
 export default function Contact() {
   const { t, num } = useLang();
@@ -36,7 +36,7 @@ export default function Contact() {
       <Image src="/assets/images/tower-sunset.jpg" alt="" fill sizes="100vw" className="object-cover object-[70%_30%] opacity-35" />
       <div className="absolute inset-0 bg-gradient-to-b from-paper via-paper/70 to-paper" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-8 lg:grid-cols-[1.2fr_1fr]">
+      <div className="relative mx-auto grid grid-cols-1 max-w-7xl items-center gap-14 px-4 sm:px-8 lg:grid-cols-[1.2fr_1fr]">
         <Reveal>
           <h2 className="font-display text-[clamp(2.8rem,7vw,6.5rem)] leading-[0.95] font-medium">
             {t.cta.title1} <span className="font-light text-brass-grad">{num(sharesLeft)}</span> {t.cta.title2}
@@ -45,9 +45,6 @@ export default function Contact() {
           <div className="mt-10 flex flex-wrap gap-3">
             <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer" className="btn-primary">
               <WhatsAppIcon className="h-5 w-5" /> {t.cta.whatsapp}
-            </a>
-            <a href={`mailto:${site.email}`} className="btn-ghost">
-              {site.email}
             </a>
           </div>
         </Reveal>

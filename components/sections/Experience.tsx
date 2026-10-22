@@ -7,7 +7,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLang } from "../LangProvider";
 import { story, range } from "@/lib/scroll";
+import { whatsappLink } from "@/lib/site";
 import { hasWebGL, isLowTier, useReducedMotion } from "@/lib/useMotion";
+import ArrowIcon from "../ArrowIcon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,23 +25,32 @@ const CHAPTERS: [number, number][] = [
 ];
 
 function HeroCopy() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  // English is set as three lines; Bangla reads as one sentence and wraps naturally.
+  const line = lang === "bn" ? "" : "block";
   return (
     <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-end px-4 pb-24 sm:px-8 md:justify-center md:pb-0">
       <p className="eyebrow mb-6">{t.hero.eyebrow}</p>
       <h1 className="font-display text-[clamp(2.6rem,7vw,6.75rem)] leading-[0.98] font-medium tracking-[-0.045em]">
-        <span className="block">{t.hero.title1}</span>
-        <span className="block font-light text-brass-grad">{t.hero.title2}</span>
-        <span className="block">{t.hero.title3}</span>
+        <span className={line}>{t.hero.title1}</span>{" "}
+        <span className={`${line} font-light text-brass-grad`}>{t.hero.title2}</span>{" "}
+        <span className={line}>{t.hero.title3}</span>
       </h1>
       <p className="mt-6 max-w-md text-base text-ink/75 md:text-lg">{t.hero.sub}</p>
 
       <div className="mt-8 flex flex-wrap items-center gap-3">
-        <a href="#contact" className="btn-primary">
-          {t.hero.cta} <span aria-hidden>→</span>
-        </a>
+        <BookButton />
       </div>
     </div>
+  );
+}
+
+function BookButton({ className = "" }: { className?: string }) {
+  const { t } = useLang();
+  return (
+    <a href={whatsappLink(t.bookMsg)} target="_blank" rel="noopener noreferrer" className={`btn-primary ${className}`}>
+      {t.hero.cta} <ArrowIcon />
+    </a>
   );
 }
 
@@ -53,6 +64,7 @@ function Chapter({ i, setRef }: { i: number; setRef: (el: HTMLDivElement | null)
           <p className="eyebrow mb-4">{c.k}</p>
           <h2 className="font-display text-[clamp(2.2rem,5vw,4.5rem)] leading-[0.98] font-medium">{c.t}</h2>
           <p className="mt-4 text-ink/75 md:text-lg">{c.d}</p>
+          {i === t.story.chapters.length - 1 && <BookButton className="mt-6" />}
         </div>
       </div>
     </div>
@@ -105,6 +117,8 @@ export default function Experience() {
         if (el) {
           el.style.opacity = String(o);
           el.style.transform = `translateY(${(1 - o) * 30}px)`;
+          // Chapters sit in pointer-events-none layers; only the visible one takes clicks (for its CTA).
+          el.style.pointerEvents = o > 0.5 ? "auto" : "none";
         }
         const d = dots.current[i];
         if (d) d.style.background = o > 0.5 ? "var(--color-brass)" : "rgb(238 241 246 / 0.15)";
@@ -126,7 +140,7 @@ export default function Experience() {
         <div className="absolute inset-0" aria-hidden>
           {mode === "3d" && <StoryCanvas quality={quality} active={active} />}
           {/* soft gradient so copy stays readable over the scene */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-paper via-paper/20 to-transparent md:bg-[linear-gradient(90deg,rgb(10_15_26/0.92)_0%,rgb(10_15_26/0.7)_32%,transparent_58%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-paper via-paper/75 via-40% to-transparent md:bg-[linear-gradient(90deg,rgb(10_15_26/0.92)_0%,rgb(10_15_26/0.7)_32%,transparent_58%)]" />
         </div>
 
         <div ref={hero} className="absolute inset-0">
@@ -166,12 +180,13 @@ function StaticStory() {
       </section>
       <section id="story" className="mx-auto max-w-7xl px-4 py-14 sm:px-8 md:py-20">
         <p className="eyebrow mb-10">{t.story.label}</p>
-        <ol className="grid gap-10 md:grid-cols-5">
-          {t.story.chapters.map((c) => (
+        <ol className="grid grid-cols-1 gap-10 md:grid-cols-5">
+          {t.story.chapters.map((c, i) => (
             <li key={c.k} className="border-t border-line pt-6">
               <p className="eyebrow mb-3">{c.k}</p>
               <h3 className="font-display text-2xl">{c.t}</h3>
               <p className="mt-2 text-sm text-ink/70">{c.d}</p>
+              {i === t.story.chapters.length - 1 && <BookButton className="mt-4" />}
             </li>
           ))}
         </ol>

@@ -69,6 +69,23 @@ function blocks(x0: number, y0: number, x1: number, y1: number, size: number, se
   return out;
 }
 
+/** Grows a box around its centre to the given aspect ratio, so nothing in it is cropped. */
+function fit(b: Box, aspect: number): Box {
+  let { w, h } = b;
+  if (w / h > aspect) h = w / aspect;
+  else w = h * aspect;
+  return { x: b.x + (b.w - w) / 2, y: b.y + (b.h - h) / 2, w, h };
+}
+
+/** Bounding box of points plus padding. */
+function bounds(pts: Pt[], padX: number, padY: number): Box {
+  const xs = pts.map((p) => p[0]);
+  const ys = pts.map((p) => p[1]);
+  const x = Math.min(...xs) - padX;
+  const y = Math.min(...ys) - padY;
+  return { x, y, w: Math.max(...xs) + padX - x, h: Math.max(...ys) + padY - y };
+}
+
 /** Eases the SVG viewBox toward a target rectangle (camera zoom). */
 function useViewBox(target: Box) {
   const [vb, setVb] = useState(VIEW);
@@ -115,20 +132,26 @@ export default function LocationMap({
   const mirpur = useMemo(() => blocks(445, 425, 735, 690, 20, 9), []);
   const fields = useMemo(() => blocks(10, 10, 300, 690, 46, 17), []);
 
+  // Frame to the container's shape: on a tall phone box, show every route instead of cropping the wide board.
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [box, setBox] = useState({ w: 0, h: 0 });
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setBox({ w: e.contentRect.width, h: e.contentRect.height }));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const aspect = box.w && box.h ? box.w / box.h : VIEW.w / VIEW.h;
+
   const target = useMemo<Box>(() => {
-    if (!focus) return VIEW;
-    const xs = ROUTES[focus].map((p) => p[0]);
-    const ys = ROUTES[focus].map((p) => p[1]);
-    let w = Math.max(...xs) - Math.min(...xs) + 240;
-    let h = Math.max(...ys) - Math.min(...ys) + 220;
-    if (w / h > VIEW.w / VIEW.h) h = (w * VIEW.h) / VIEW.w;
-    else w = (h * VIEW.w) / VIEW.h;
-    const cx = (Math.max(...xs) + Math.min(...xs)) / 2;
-    const cy = (Math.max(...ys) + Math.min(...ys)) / 2;
-    return { x: cx - w / 2, y: cy - h / 2, w, h };
-  }, [focus]);
+    if (focus) return fit(bounds(ROUTES[focus], 120, 110), aspect);
+    if (aspect >= 1) return VIEW;
+    return fit(bounds(Object.values(ROUTES).flat(), 80, 60), aspect);
+  }, [focus, aspect]);
   const vb = useViewBox(target);
-  const s = vb.w / VIEW.w; // keeps markers & labels the same size on screen while zoomed
+  // Keeps markers & labels the same size on screen while zoomed; a little larger on narrow boxes.
+  const s = (vb.w / VIEW.w) * (box.w ? Math.max(1, Math.sqrt(640 / box.w)) : 1);
 
   // Every distinct road segment used by any route.
   const roads = useMemo(() => {
@@ -152,6 +175,7 @@ export default function LocationMap({
 
   return (
     <svg
+      ref={svgRef}
       viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
       preserveAspectRatio="xMidYMid slice"
       className="h-full w-full select-none"

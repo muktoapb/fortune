@@ -5,6 +5,7 @@ import { useLang } from "../LangProvider";
 import Reveal from "../Reveal";
 import { destinations, site, universities } from "@/lib/site";
 import LocationMap from "../LocationMap";
+import ArrowIcon from "../ArrowIcon";
 
 type Key = (typeof destinations)[number]["key"];
 
@@ -27,14 +28,14 @@ export default function Location() {
           <p className="mt-6 max-w-xl text-ink/70">{t.location.body}</p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[1.6fr_1fr]">
           <Reveal className="relative">
               <div className="relative h-[460px] overflow-hidden rounded-[2rem] border border-line bg-cream sm:h-[580px]">
                 <LocationMap active={active} focus={zoomTo} onSelect={select} onHover={setHover} t={t.location} num={num} />
                 <div className="pointer-events-none absolute bottom-4 left-4 flex flex-wrap items-center gap-2">
                   {focus && (
-                    <button onClick={() => setFocus(null)} className="glass pointer-events-auto rounded-full px-4 py-2 text-sm">
-                      ← {t.location.all}
+                    <button onClick={() => setFocus(null)} className="glass pointer-events-auto inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm">
+                      <ArrowIcon dir="left" /> {t.location.all}
                     </button>
                   )}
                   <span className="glass rounded-full px-3 py-1.5 text-[0.7rem] text-mist">{t.location.approx}</span>
@@ -92,7 +93,7 @@ export default function Location() {
             rel="noopener noreferrer"
             className="btn-ghost"
           >
-            {t.location.map} <span aria-hidden>↗</span>
+            {t.location.map} <ArrowIcon dir="up-right" />
           </a>
         </Reveal>
       </div>

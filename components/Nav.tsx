@@ -22,7 +22,7 @@ export function LangToggle() {
           key={l}
           onClick={() => setLang(l)}
           aria-pressed={lang === l}
-          className={`rounded-full px-3 py-1.5 transition-colors ${lang === l ? "bg-ink text-paper" : "text-ink/70 hover:text-ink"}`}
+          className={`flex min-h-10 items-center rounded-full px-3.5 transition-colors ${lang === l ? "bg-ink text-paper" : "text-ink/70 hover:text-ink"}`}
         >
           {l === "en" ? "EN" : "বাং"}
         </button>

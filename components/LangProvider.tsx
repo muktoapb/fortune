@@ -11,7 +11,10 @@ const LangContext = createContext<Ctx | null>(null);
 export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
 
+  // ?lang=bn / ?lang=en (e.g. in shared links) wins over the saved choice and becomes it.
   useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("lang");
+    if (param === "en" || param === "bn") return setLang(param);
     try {
       const saved = localStorage.getItem("ft-lang");
       if (saved === "en" || saved === "bn") setLangState(saved);

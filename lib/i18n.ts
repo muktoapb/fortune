@@ -49,7 +49,7 @@ const en = {
   shares: {
     label: "Land shares",
     title: "Only a few pieces of this land remain.",
-    body: "The plot is divided into 36 equal shares. Each share is 0.335 decimal of undivided land and becomes one flat when the building is complete.",
+    body: "The plot is divided into 36 equal shares. Each share is 0.335 decimal of undivided land and becomes one flat, allocated by random draw, when the building is complete.",
     sold: "Sold",
     available: "Available",
     tile: "1 land share",
@@ -152,15 +152,15 @@ const en = {
     items: [
       {
         q: "What is a land share?",
-        a: "The plot is divided into 36 equal shares. Each share is 0.335 decimal of undivided land, registered in your name. When the building is complete, each share becomes one flat.",
+        a: "The plot is divided into 36 equal shares. Each share is 0.335 decimal of undivided land, registered in your name. When the building is complete, each share becomes one flat, allocated by random draw.",
       },
       {
         q: "How does payment work?",
-        a: "Book with BDT 1,00,000. Before registration, pay the remaining BDT 5,00,000 plus the BDT 20,000 registration fee. Construction cost (estimated BDT 23–24 lakh) is paid in stages during construction.",
+        a: "Book with BDT 1,00,000. Before registration, pay the remaining BDT 5,00,000 plus the BDT 20,000 registration fee. Construction cost (estimated BDT 28–30 lakh) is paid in stages during construction.",
       },
       {
         q: "Which flat will I get?",
-        a: "Flats have not been allocated yet. Shareholders will be allocated flats as the project progresses.",
+        a: "Flats are distributed by random draw (lottery) among all shareholders, so every share has an equal chance at every flat. All 36 flats are the same size, 1,313 sq ft including parking.",
       },
       {
         q: "Can Bangladeshis living abroad buy?",
@@ -206,6 +206,7 @@ const en = {
   },
   wa: "Chat on WhatsApp",
   waMsg: "Assalamu Alaikum, I'd like to know more about Fortune Tower.",
+  bookMsg: "Assalamu Alaikum, I'd like to book a share in Fortune Tower. Please share the details.",
 };
 
 export type Dict = typeof en;
@@ -219,7 +220,7 @@ const bn: Dict = {
   hero: {
     eyebrow: "জি+৯ রেসিডেন্স · বিরুলিয়া, ঢাকা",
     title1: "আপনার ভবিষ্যৎ",
-    title2: "বাড়ির নিচের",
+    title2: "বাড়ির",
     title3: "জমির মালিক হোন।",
     sub: "১২.০৬ শতাংশের কর্নার প্লটে ৩৬টি আধুনিক ফ্ল্যাট, ৩০০ ফুট রিং রোড থেকে মাত্র কয়েক মিনিট।",
     left: "বাকি",
@@ -259,7 +260,7 @@ const bn: Dict = {
   shares: {
     label: "জমির শেয়ার",
     title: "এই জমির আর অল্প কয়েকটি অংশ বাকি।",
-    body: "প্লটটি ৩৬টি সমান শেয়ারে ভাগ করা। প্রতিটি শেয়ার ০.৩৩৫ শতাংশ অবিভক্ত জমি, যা ভবন সম্পূর্ণ হলে একটি ফ্ল্যাটে পরিণত হবে।",
+    body: "প্লটটি ৩৬টি সমান শেয়ারে ভাগ করা। প্রতিটি শেয়ার ০.৩৩৫ শতাংশ অবিভক্ত জমি, যা ভবন সম্পূর্ণ হলে লটারির মাধ্যমে বরাদ্দকৃত একটি ফ্ল্যাটে পরিণত হবে।",
     sold: "বিক্রিত",
     available: "খালি",
     tile: "১টি জমির শেয়ার",
@@ -362,15 +363,15 @@ const bn: Dict = {
     items: [
       {
         q: "জমির শেয়ার কী?",
-        a: "প্লটটি ৩৬টি সমান শেয়ারে ভাগ করা। প্রতিটি শেয়ার ০.৩৩৫ শতাংশ অবিভক্ত জমি, যা আপনার নামে রেজিস্ট্রি হবে। ভবন সম্পূর্ণ হলে প্রতিটি শেয়ার একটি ফ্ল্যাটে পরিণত হবে।",
+        a: "প্লটটি ৩৬টি সমান শেয়ারে ভাগ করা। প্রতিটি শেয়ার ০.৩৩৫ শতাংশ অবিভক্ত জমি, যা আপনার নামে রেজিস্ট্রি হবে। ভবন সম্পূর্ণ হলে প্রতিটি শেয়ার লটারির মাধ্যমে বরাদ্দকৃত একটি ফ্ল্যাটে পরিণত হবে।",
       },
       {
         q: "পেমেন্ট কীভাবে করব?",
-        a: "১,০০,০০০ টাকা দিয়ে বুকিং করুন। রেজিস্ট্রেশনের আগে বাকি ৫,০০,০০০ টাকা ও ২০,০০০ টাকা রেজিস্ট্রেশন ফি দিন। নির্মাণ খরচ (আনুমানিক ২৩–২৪ লাখ টাকা) নির্মাণের সময় ধাপে ধাপে দিতে হবে।",
+        a: "১,০০,০০০ টাকা দিয়ে বুকিং করুন। রেজিস্ট্রেশনের আগে বাকি ৫,০০,০০০ টাকা ও ২০,০০০ টাকা রেজিস্ট্রেশন ফি দিন। নির্মাণ খরচ (আনুমানিক ২৮–৩০ লাখ টাকা) নির্মাণের সময় ধাপে ধাপে দিতে হবে।",
       },
       {
         q: "আমি কোন ফ্ল্যাট পাব?",
-        a: "ফ্ল্যাট এখনও বরাদ্দ করা হয়নি। প্রজেক্ট এগোনোর সাথে সাথে শেয়ারহোল্ডারদের ফ্ল্যাট বরাদ্দ দেওয়া হবে।",
+        a: "সকল শেয়ারহোল্ডারের মধ্যে লটারির মাধ্যমে ফ্ল্যাট বণ্টন করা হবে, তাই প্রতিটি শেয়ারের যেকোনো ফ্ল্যাট পাওয়ার সমান সুযোগ রয়েছে। ৩৬টি ফ্ল্যাটই একই মাপের — পার্কিংসহ ১,৩১৩ বর্গফুট।",
       },
       {
         q: "প্রবাসীরা কি কিনতে পারবেন?",
@@ -389,7 +390,7 @@ const bn: Dict = {
     whatsapp: "হোয়াটসঅ্যাপ",
     email: "ইমেইল",
     form: {
-      title: "কল ব্যাক অনুরোধ",
+      title: "এখনি যোগাযোগ করুন",
       name: "আপনার নাম",
       phone: "ফোন নম্বর",
       time: "কল করার সুবিধাজনক সময়",
@@ -416,6 +417,7 @@ const bn: Dict = {
   },
   wa: "হোয়াটসঅ্যাপে কথা বলুন",
   waMsg: "আসসালামু আলাইকুম, ফরচুন টাওয়ার সম্পর্কে আরও জানতে চাই।",
+  bookMsg: "আসসালামু আলাইকুম, আমি ফরচুন টাওয়ারে একটি শেয়ার বুক করতে চাই। বিস্তারিত জানাবেন।",
 };
 
 export const dicts = { en, bn };

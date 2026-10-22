@@ -28,9 +28,9 @@ export default function Home() {
 
   return (
     <section id="home" className="relative py-14 md:py-20">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-8 lg:grid-cols-2">
+      <div className="mx-auto grid grid-cols-1 max-w-7xl items-center gap-14 px-4 sm:px-8 lg:grid-cols-2">
         <Reveal className="order-2 lg:order-1">
-          <div className="relative rounded-[2rem] border border-line bg-cream/80 p-6 sm:p-10">
+          <div className="relative rounded-[2rem] border border-line bg-cream/80 p-3 sm:p-10">
             <svg viewBox="-50 -50 580 470" className="w-full" role="img" aria-label={t.home.note}>
               <defs>
                 <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -56,17 +56,22 @@ export default function Home() {
                       strokeWidth={on ? 2 : 1.2}
                       style={{ transition: "fill .3s, stroke .3s" }}
                     />
+                    {/* one word per line; labels are enlarged on phones, where the plan renders at ~half scale */}
                     <text
                       x={r.x + r.w / 2}
                       y={r.y + r.h / 2}
                       textAnchor="middle"
                       dominantBaseline="middle"
-                      fontSize={r.w < 100 || r.h < 50 ? 11 : 14}
+                      className={r.w < 100 || r.h < 50 ? "text-[18px] sm:text-[11px]" : "text-[22px] sm:text-[14px]"}
                       fill={on ? "#d4b27a" : "rgba(238,241,246,0.7)"}
                       transform={r.w < 50 ? `rotate(-90 ${r.x + r.w / 2} ${r.y + r.h / 2})` : undefined}
                       style={{ transition: "fill .3s", pointerEvents: "none" }}
                     >
-                      {t.home.rooms[r.k]}
+                      {t.home.rooms[r.k].split(" ").map((w, j, ws) => (
+                        <tspan key={j} x={r.x + r.w / 2} dy={j === 0 ? `${-(ws.length - 1) * 0.55}em` : "1.1em"}>
+                          {w}
+                        </tspan>
+                      ))}
                     </text>
                   </g>
                 );

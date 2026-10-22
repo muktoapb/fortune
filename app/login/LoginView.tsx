@@ -6,6 +6,7 @@ import { LangProvider, useLang } from "@/components/LangProvider";
 import { LangToggle } from "@/components/Nav";
 import { WhatsAppIcon } from "@/components/WhatsAppFab";
 import { whatsappLink } from "@/lib/site";
+import ArrowIcon from "@/components/ArrowIcon";
 
 /** Placeholder until the customer / partner portal (Phase 2) exists. */
 function Card() {
@@ -36,8 +37,8 @@ function Card() {
               <WhatsAppIcon className="h-5 w-5" /> {t.cta.whatsapp}
             </a>
           </div>
-          <Link href="/" className="mt-8 inline-block text-sm text-brass hover:underline">
-            ← {t.login.back}
+          <Link href="/" className="mt-8 inline-flex items-center gap-1.5 text-sm text-brass hover:underline">
+            <ArrowIcon dir="left" /> {t.login.back}
           </Link>
         </div>
       </div>

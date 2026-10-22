@@ -73,9 +73,29 @@ export default function Trust() {
     return () => st.kill();
   }, [nowIndex, steps.length]);
 
+  // Documents panel: under the summary on desktop, after the timeline on phones.
+  const docs = (className: string) => (
+    <Reveal delay={200} className={`glass rounded-[1.75rem] p-6 ${className}`}>
+      <p className="mb-4 text-[0.7rem] font-semibold tracking-[0.24em] text-mist uppercase">{j.docsTitle}</p>
+      <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+        {j.docs.map((d) => (
+          <li key={d} className="flex items-center gap-2.5 text-sm text-ink/85">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-line text-brass">
+              <DocIcon />
+            </span>
+            {d}
+          </li>
+        ))}
+      </ul>
+      <a href={whatsappLink(j.askMsg)} target="_blank" rel="noopener noreferrer" className="btn-ghost mt-6 w-full justify-center !text-sm">
+        <WhatsAppIcon className="h-4 w-4 text-[#25d366]" /> {j.ask}
+      </a>
+    </Reveal>
+  );
+
   return (
     <section id="trust" className="relative py-14 md:py-20">
-      <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-8 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+      <div className="mx-auto grid grid-cols-1 max-w-7xl gap-14 px-4 sm:px-8 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
         {/* summary (sticky on desktop) */}
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
@@ -103,22 +123,7 @@ export default function Trust() {
             <p className="mt-3 text-xs text-mist">{j.updated}</p>
           </Reveal>
 
-          <Reveal delay={200} className="glass mt-10 rounded-[1.75rem] p-6">
-            <p className="mb-4 text-[0.7rem] font-semibold tracking-[0.24em] text-mist uppercase">{j.docsTitle}</p>
-            <ul className="grid gap-2.5 sm:grid-cols-2">
-              {j.docs.map((d) => (
-                <li key={d} className="flex items-center gap-2.5 text-sm text-ink/85">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-line text-brass">
-                    <DocIcon />
-                  </span>
-                  {d}
-                </li>
-              ))}
-            </ul>
-            <a href={whatsappLink(j.askMsg)} target="_blank" rel="noopener noreferrer" className="btn-ghost mt-6 w-full justify-center !text-sm">
-              <WhatsAppIcon className="h-4 w-4 text-[#25d366]" /> {j.ask}
-            </a>
-          </Reveal>
+          {docs("mt-10 hidden lg:block")}
         </div>
 
         {/* journey */}
@@ -167,6 +172,8 @@ export default function Trust() {
             );
           })}
         </ol>
+
+        {docs("lg:hidden")}
       </div>
     </section>
   );

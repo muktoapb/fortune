@@ -25,9 +25,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     alternateLocale: ["bn_BD"],
-    images: [{ url: "/assets/images/tower-sunset.jpg", width: 1024, height: 1024, alt: "Fortune Tower at sunset" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/assets/images/tower-sunset.jpg"] },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export const viewport: Viewport = { themeColor: "#0a0f1a", width: "device-width", initialScale: 1 };

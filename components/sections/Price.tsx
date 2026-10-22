@@ -28,9 +28,9 @@ export default function Price() {
           <h2 className="max-w-3xl font-display text-[clamp(2.4rem,5.5vw,4.8rem)] leading-[0.98] font-medium">{t.price.title}</h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <Reveal className="glass rounded-[2rem] p-8 lg:col-span-2">
-            <dl className="grid gap-6 sm:grid-cols-3">
+            <dl className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               <div>
                 <dt className="text-sm text-mist">{t.price.share}</dt>
                 <dd className="mt-1 font-display text-4xl">৳ {num(bdt(site.sharePrice))}</dd>

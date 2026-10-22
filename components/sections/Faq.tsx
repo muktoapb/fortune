@@ -7,7 +7,7 @@ export default function Faq() {
   const { t } = useLang();
   return (
     <section id="faq" className="relative py-14 md:py-20">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-8 lg:grid-cols-[1fr_1.6fr]">
+      <div className="mx-auto grid grid-cols-1 max-w-7xl gap-12 px-4 sm:px-8 lg:grid-cols-[1fr_1.6fr]">
         <Reveal>
           <p className="eyebrow mb-5">{t.faq.label}</p>
           <h2 className="font-display text-[clamp(2.4rem,5.5vw,4.8rem)] leading-[0.98] font-medium">{t.faq.title}</h2>
