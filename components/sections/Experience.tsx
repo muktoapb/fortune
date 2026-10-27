@@ -30,25 +30,29 @@ function HeroCopy() {
   const line = lang === "bn" ? "" : "block";
   return (
     <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-end px-4 pb-24 sm:px-8 md:justify-center md:pb-0">
-      <p className="eyebrow mb-6">{t.hero.eyebrow}</p>
-      <h1 className="font-display text-[clamp(2.6rem,7vw,6.75rem)] leading-[0.98] font-medium tracking-[-0.045em]">
-        <span className={line}>{t.hero.title1}</span>{" "}
-        <span className={`${line} font-light text-brass-grad`}>{t.hero.title2}</span>{" "}
-        <span className={line}>{t.hero.title3}</span>
-      </h1>
-      <p className="mt-6 max-w-md text-base text-ink/75 md:text-lg">{t.hero.sub}</p>
+      <div className="lg:max-w-[50%]">
+        <p className="eyebrow mb-6">{t.hero.eyebrow}</p>
+        <h1
+          className={`font-display ${lang === "bn" ? "text-[clamp(2rem,5vw,4.5rem)]" : "text-[clamp(2.6rem,7vw,6.75rem)]"} leading-[0.98] font-medium tracking-[-0.045em]`}
+        >
+          <span className={line}>{t.hero.title1}</span>{" "}
+          <span className={`${line} font-light text-brass-grad`}>{t.hero.title2}</span>{" "}
+          <span className={line}>{t.hero.title3}</span>
+        </h1>
+        <p className="mt-6 max-w-md text-base text-ink/75 md:text-lg">{t.hero.sub}</p>
 
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        <BookButton />
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <BookButton variant="ghost" />
+        </div>
       </div>
     </div>
   );
 }
 
-function BookButton({ className = "" }: { className?: string }) {
+function BookButton({ className = "", variant = "primary" }: { className?: string; variant?: "primary" | "ghost" }) {
   const { t } = useLang();
   return (
-    <a href={whatsappLink(t.bookMsg)} target="_blank" rel="noopener noreferrer" className={`btn-primary ${className}`}>
+    <a href={whatsappLink(t.bookMsg)} target="_blank" rel="noopener noreferrer" className={`btn-${variant} ${className}`}>
       {t.hero.cta} <ArrowIcon />
     </a>
   );

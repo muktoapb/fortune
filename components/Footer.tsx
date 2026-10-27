@@ -152,7 +152,7 @@ export default function Footer() {
             fontSize="150"
             fontWeight="600"
             fill="url(#wordFade)"
-            style={{ fontFamily: "var(--font-sora)", letterSpacing: "-0.04em" }}
+            style={{ fontFamily: "var(--font-alhadara)", letterSpacing: "-0.04em" }}
           >
             FORTUNE TOWER
           </text>

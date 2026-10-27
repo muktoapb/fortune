@@ -15,7 +15,7 @@
   --color-sold: #4b5a73;
   --color-line: rgb(238 241 246 / 0.1);
 
-  --font-display: var(--font-sora), system-ui, sans-serif;
+  --font-display: var(--font-alhadara), system-ui, sans-serif;
   --font-sans: var(--font-jakarta), system-ui, sans-serif;
 
   --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
@@ -23,7 +23,7 @@
 
 /* Bangla: swap to fonts that render Bengali script properly. */
 html:lang(bn) {
-  --font-display: var(--font-anek), var(--font-sora), sans-serif;
+  --font-display: var(--font-alinur), var(--font-alhadara), sans-serif;
   --font-sans: var(--font-hind), var(--font-jakarta), sans-serif;
 }
 

@@ -1,12 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Plus_Jakarta_Sans, Hind_Siliguri, Anek_Bangla } from "next/font/google";
+import { Plus_Jakarta_Sans, Hind_Siliguri } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { site } from "@/lib/site";
 
-const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
+const alhadara = localFont({
+  src: "../public/assets/fonts/alhadara/Alhadara-DEMO.ttf",
+  variable: "--font-alhadara",
+});
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 const hind = Hind_Siliguri({ subsets: ["bengali", "latin"], weight: ["400", "500", "600"], variable: "--font-hind" });
-const anek = Anek_Bangla({ subsets: ["bengali", "latin"], variable: "--font-anek" });
+const alinur = localFont({
+  src: [
+    { path: "../public/assets/fonts/alinur/Li Alinur Nobin Unicode.ttf", style: "normal" },
+    { path: "../public/assets/fonts/alinur/Li Alinur Nobin Unicode Italic.ttf", style: "italic" },
+  ],
+  variable: "--font-alinur",
+});
 
 const title = "Fortune Tower — G+9 Residence in Birulia, Dhaka";
 const description =
@@ -51,7 +61,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sora.variable} ${jakarta.variable} ${hind.variable} ${anek.variable}`}>
+    <html lang="en" className={`${alhadara.variable} ${jakarta.variable} ${hind.variable} ${alinur.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
